@@ -1,0 +1,50 @@
+ALGORITHM problem2-solution2
+VAR
+//inputs
+ set1:ARRAY_OF INTEGER[];
+ set2:ARRAY_OF INTEGER[];
+ //var local
+ i,j,element : INTEGER :=0;
+ hTab :HASH_TABLE<INTEGER,INTEGER>;
+ count : INTEGER :=1;
+ 
+ //outputs
+ sum :INTEGER :=0;
+
+
+BEGIN
+     FOR i FROM 0 TO set1.length-1   DO
+     Read(set1[i]);
+ END_FOR
+ FOR i FROM 0 TO set2.length-1   DO
+     Read(set2[i]);
+ END_FOR
+
+
+ //insert set1 in HASH-TABLE
+  FOR i FROM 0 TO set1.length-1   DO
+     hTab.insert(set1[i],count);
+ END_FOR
+ FOR j FROM 0 TO set2.length-1   DO
+    IF (hTab.lookup(set2[j])= true) THEN
+       hTab.insert(set2[j],count+1);
+    else
+       hTab.insert(set2[j],count);
+    END_IF
+ END_FOR
+
+
+
+
+//boucle hTab
+ FOR element in hTab DO
+ IF (hTab.get(element) = 2) THEN
+     sum = sum + element;
+ END_IF
+END_FOR
+
+
+//outputs
+ sum = sum *2;
+ write(sum);
+END
